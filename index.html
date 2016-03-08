@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Experiment</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script type="text/javascript" src="libs/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="libs/sammy.js"></script>
+    <script type="text/javascript" src="libs/q.js"></script>
+
+    <script type="text/javascript" src="libs/mustache.js"></script>
+    <script type="text/javascript" src="libs/sammy.mustache.js"></script>
+</head>
+<body>
+    <header>
+        <nav id="menu" class="navbar navbar-default navbar-static-top">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home/">Home</a></li>
+                <li><a href="#/logout/">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="wrapper">
+        <div class="container body-content"></div>
+    </div>
+
+    <script src="app/helpers/requester.js"></script>
+    <script src="app/helpers/collectionRequester.js"></script>
+    <script src="app/helpers/collectionRepo.js"></script>
+    <script src="app/helpers/templateLoader.js"></script>
+
+    <script src="app/userModule.js"></script>
+    
+    <script src="app/views/home-views.js"></script>
+    <script src="app/views/user-views.js"></script>
+
+    <script src="app/controllers/home-controller.js"></script>
+    <script src="app/controllers/user-controller.js"></script>
+
+    <script src="app/app.js"></script>
+
+    <script type="text/javascript" src="libs/bootstrap.js"></script>
+</body>
+</html>
