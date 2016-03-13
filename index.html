@@ -14,6 +14,14 @@
 
     <script type="text/javascript" src="libs/mustache.js"></script>
     <script type="text/javascript" src="libs/sammy.mustache.js"></script>
+
+    <script type="text/javascript" src="libs/noty/jquery.noty.js"></script>
+    <script type="text/javascript" src="libs/noty/layouts/top.js"></script>
+    <script type="text/javascript" src="libs/noty/layouts/topLeft.js"></script>
+    <script type="text/javascript" src="libs/noty/layouts/topRight.js"></script>
+
+    <!-- You can add more layouts if you want -->
+    <script type="text/javascript" src="libs/noty/themes/default.js"></script>
 </head>
 <body>
     <header>
@@ -21,6 +29,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#/home/">Home</a></li>
                 <li><a href="#/logout/">Logout</a></li>
+                <li><a href="#/category/">Categories</a></li>
             </ul>
         </nav>
     </header>
@@ -34,13 +43,25 @@
     <script src="app/helpers/collectionRepo.js"></script>
     <script src="app/helpers/templateLoader.js"></script>
 
-    <script src="app/userModule.js"></script>
-    
-    <script src="app/views/home-views.js"></script>
-    <script src="app/views/user-views.js"></script>
+    <!--BindingModels-->
+    <script src="app/bindingModels/category.js"></script>
+    <script src="app/bindingModels/album.js"></script>
+    <script src="app/bindingModels/comment.js"></script>
+    <script src="app/bindingModels/photo.js"></script>
 
-    <script src="app/controllers/home-controller.js"></script>
-    <script src="app/controllers/user-controller.js"></script>
+    <!--Models-->
+    <script src="app/models/userModule.js"></script>
+    <script src="app/models/categoryModule.js"></script>
+
+    <!--Views-->
+    <script src="app/views/homeViews.js"></script>
+    <script src="app/views/userViews.js"></script>
+    <script src="app/views/categoryViews.js"></script>
+
+    <!--Controllers-->
+    <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/userController.js"></script>
+    <script src="app/controllers/categoryController.js"></script>
 
     <script src="app/app.js"></script>
 

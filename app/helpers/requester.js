@@ -6,7 +6,13 @@ app.requester = (function () {
         this.appSecret = appSecret;
         this.baseUrl = 'https://baas.kinvey.com/'
     }
+    Requester.prototype.get = function(url, useSession) {
+        return this.makeRequest('GET', url, null, useSession);
+    };
 
+    Requester.prototype.post = function(url, data, useSession) {
+        return this.makeRequest('POST', url, data, useSession);
+    };
     Requester.prototype.makeRequest = function (method, url, data, useSession) {
         var token,
             defer = Q.defer(),

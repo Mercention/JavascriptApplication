@@ -8,12 +8,15 @@ var app = app || {};
     //townsRepo.add({name:'Plovdiv', country:'Bulgaria'});
 
     var userModule = app.userModule.load(),
+        categoryModule = app.categoryModule.load(),
 
         homeViews = app.homeViews.load(),
         userViews = app.userViews.load(),
+        categoryViews = app.categoryViews.load(),
 
         homeController = app.homeController.load(homeViews),
-        userController = app.userController.load(userModule, userViews);
+        userController = app.userController.load(userModule, userViews),
+        categoryController = app.categoryController.load(categoryModule,categoryViews);
 
     var selector = '.container';
 
@@ -79,6 +82,9 @@ var app = app || {};
         this.get('#/home/', function () {
             homeController.homeScreen(selector);
         });
+        this.get('#/category/',function(){
+            categoryController.getAllCategories(selector);
+        });
 
         this.bind('login', function (e, data) {
             userController.login(data.username, data.password);
@@ -87,6 +93,11 @@ var app = app || {};
         this.bind('register', function (e, data) {
             userController.register(data.username, data.password, data.email);
         });
+        this.bind('add-category',function(e, data){
+            categoryController.addCategory(data._id,data.title)
+        });
+
+
     });
 
     app.router.run('#/');
