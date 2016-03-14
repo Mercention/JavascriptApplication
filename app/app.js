@@ -94,7 +94,7 @@ var app = app || {};
             userController.register(data.username, data.password, data.email);
         });
         this.bind('add-category',function(e, data){
-            categoryController.addCategory(data._id,data.title)
+            categoryController.addCategory(data)
         });
 
 

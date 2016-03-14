@@ -5,6 +5,5 @@ var AlbumInputModel = (function() {
         this.categotyId = categoryId;
 
     }
-
     return AlbumInputModel;
 }());

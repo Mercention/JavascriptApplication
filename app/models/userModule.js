@@ -14,7 +14,7 @@ app.userModule = (function () {
                 email: email
             };
 
-        app.requester.makeRequest('POST', requestUrl, data)
+        app.requester.post(requestUrl, data)
             .then(function (success) {
                 sessionStorage.setItem('sessionAuth', success._kmd.authtoken);
                 sessionStorage.setItem('userId', success._id);
@@ -36,7 +36,7 @@ app.userModule = (function () {
                 password: password
             };
 
-        app.requester.makeRequest('POST', requestUrl, data)
+        app.requester.post( requestUrl, data)
             .then(function (success) {
                 sessionStorage.setItem('sessionAuth', success._kmd.authtoken);
                 sessionStorage.setItem('userId', success._id);

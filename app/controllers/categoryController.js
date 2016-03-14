@@ -27,7 +27,6 @@ app.categoryController = (function() {
         var _this = this;
 
         var categoryOutputModel = {
-            id : data._id,
             title: data.title
         };
 
