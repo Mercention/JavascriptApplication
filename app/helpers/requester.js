@@ -46,7 +46,7 @@ app.requester = (function () {
         $.ajax(options);
 
         return defer.promise;
-    }
+    };
 
     return {
         config: function (appId, appSecret) {

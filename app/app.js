@@ -9,28 +9,29 @@ var app = app || {};
 
     var userModule = app.userModule.load(),
         categoryModule = app.categoryModule.load(),
-        photoModule = app.photoModule.load(),
+        albumModule = app.albumModule.load(),
 
         homeViews = app.homeViews.load(),
         userViews = app.userViews.load(),
         categoryViews = app.categoryViews.load(),
-        photoViews = app.photoViews.load(),
+        albumViews = app.albumViews.load(),
 
         homeController = app.homeController.load(homeViews),
         userController = app.userController.load(userModule, userViews),
         categoryController = app.categoryController.load(categoryModule, categoryViews),
-        photoController = app.photoController.load(photoModule, photoViews);
-
+        albumController = app.albumController.load(albumModule, albumViews);
 
     var selector = '.container';
 
     app.router = $.sammy(function () {
         //this.use('Mustache');
+        function haveLoggedInUser() {
+            var userId = sessionStorage['userId'];
+            return userId ? true : false;
+        }
 
         this.before(function () {
-            var userId = sessionStorage['userId'];
-
-            if (userId) {
+            if (haveLoggedInUser()) {
                 $('#menu').show();
             } else {
                 $('#menu').hide();
@@ -38,9 +39,7 @@ var app = app || {};
         });
 
         this.before('#/', function () {
-            var userId = sessionStorage['userId'];
-
-            if (userId) {
+            if (haveLoggedInUser()) {
                 this.redirect('#/home/');
 
                 return false;
@@ -48,9 +47,7 @@ var app = app || {};
         });
 
         this.before('#/home/', function () {
-            var userId = sessionStorage['userId'];
-
-            if (!userId) {
+            if (!haveLoggedInUser()) {
                 this.redirect('#/');
 
                 return false;
@@ -58,9 +55,7 @@ var app = app || {};
         });
 
         this.before('#/logout/', function () {
-            var userId = sessionStorage['userId'];
-
-            if (!userId) {
+            if (!haveLoggedInUser()) {
                 this.redirect('#/');
 
                 return false;
@@ -86,6 +81,7 @@ var app = app || {};
         this.get('#/home/', function () {
             homeController.homeScreen(selector);
         });
+
         this.get('#/category/', function () {
             categoryController.getAllCategories(selector);
         });
@@ -94,6 +90,14 @@ var app = app || {};
             photoController.getAllPhotos(selector);
         });
 
+        this.get('#/add-album', function () {
+            albumController.loadAddAlbumPage(selector);
+        });
+
+        this.get('#/album/:id', function () {
+            var albumId = this.params['id'];
+            albumController.getAlbum(selector, albumId);
+        });
 
         this.bind('login', function (e, data) {
             userController.login(data.username, data.password);
@@ -102,11 +106,18 @@ var app = app || {};
         this.bind('register', function (e, data) {
             userController.register(data.username, data.password, data.email);
         });
+
         this.bind('add-category', function (e, data) {
-            categoryController.addCategory(data)
+            categoryController.addCategory(data);
         });
 
+        this.bind('add-album', function (e, data) {
+            albumController.addAlbum(data);
+        });
 
+        this.bind('redirectUrl', function (e, data) {
+            this.redirect(data.url);
+        });
     });
 
     app.router.run('#/');
