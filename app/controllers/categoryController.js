@@ -7,7 +7,7 @@ app.categoryController = (function() {
     }
 
     CategoryController.prototype.getAllCategories = function(selector) {
-        var _this =this;
+        var _this = this;
 
         this._model.getAllCategories()
             .then(function (categories) {

@@ -1,3 +1,14 @@
-/**
- * Created by Jinjaar-pc on 3/12/2016.
- */
+var app = app || {};
+
+app.commentController = (function(){
+    function CommentController(model, viewBag) {
+        this._model = model;
+        this._viewBag = viewBag;
+    }
+
+    return {
+        load: function(model, viewBag){
+            return new CommentController(model, viewBag);
+        }
+    };
+}());
