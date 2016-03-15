@@ -1,0 +1,9 @@
+<ul>
+    {{#photos}}
+    <li data-id="{{_id}}">
+        <img src='data:image/{{type}};base64,{{data}}' />
+        <p>{{title}}</p>
+
+    </li>
+    {{/photos}}
+</ul>

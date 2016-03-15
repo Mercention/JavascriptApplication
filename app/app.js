@@ -10,16 +10,19 @@ var app = app || {};
     var userModule = app.userModule.load(),
         categoryModule = app.categoryModule.load(),
         albumModule = app.albumModule.load(),
+        photoModule = app.photoModule.load(),
 
         homeViews = app.homeViews.load(),
         userViews = app.userViews.load(),
         categoryViews = app.categoryViews.load(),
         albumViews = app.albumViews.load(),
+        photoViews = app.photoViews.load(),
 
         homeController = app.homeController.load(homeViews),
         userController = app.userController.load(userModule, userViews),
         categoryController = app.categoryController.load(categoryModule, categoryViews),
-        albumController = app.albumController.load(albumModule, albumViews);
+        albumController = app.albumController.load(albumModule, albumViews),
+        photoController = app.photoController.load(photoModule,photoViews);
 
     var selector = '.container';
 
@@ -84,6 +87,10 @@ var app = app || {};
 
         this.get('#/category/', function () {
             categoryController.getAllCategories(selector);
+        });
+
+        this.get('#/category/photos', function () {
+            photoController.getAllPhotos(selector);
         });
 
         this.get('#/add-album', function () {

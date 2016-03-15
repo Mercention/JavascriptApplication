@@ -12,7 +12,7 @@ app.albumViews = (function () {
             $('#add-picture-btn').on('click', function () {
                 var data = {
                     albumId: $('#album-id').val()
-                }
+                };
 
                 /*$.sammy(function () {
                  this.trigger('add-picture', data);

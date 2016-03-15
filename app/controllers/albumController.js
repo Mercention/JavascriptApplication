@@ -17,7 +17,7 @@ app.albumController = (function () {
 
                 _this._viewBag.showAlbums(selector, albums);
             }).done();
-    }
+    };
 
     AlbumController.prototype.getAlbum = function (selector, albumId) {
         var _this = this;
@@ -28,11 +28,11 @@ app.albumController = (function () {
 
                 _this._viewBag.showAlbum(selector, album);
             }).done();
-    }
+    };
 
     AlbumController.prototype.loadAddAlbumPage = function(selector){
         this._viewBag.addAlbum(selector);
-    }
+    };
 
     AlbumController.prototype.addAlbum = function (data) {
         var _this = this;
@@ -43,7 +43,7 @@ app.albumController = (function () {
                     this.trigger('redirectUrl', {url:'#/album/' + album._id});
                 });
             }).done();
-    }
+    };
 
     return {
         load: function (model, viewBag) {

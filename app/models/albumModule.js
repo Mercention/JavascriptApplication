@@ -18,7 +18,7 @@ app.albumModule = (function () {
 
     AlbumModule.prototype.getAlbum = function (albumId) {
         return app.requester.get(this.serviceUrl + '/' + albumId, true);
-    }
+    };
 
     return {
         load: function () {

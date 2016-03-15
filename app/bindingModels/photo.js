@@ -1,8 +1,8 @@
 var PhotoInputModel = (function() {
-    function PhotoInputModel(id,title,photoBase) {
+    function PhotoInputModel(id,title,data) {
         this._id = id;
         this.title = title;
-        this.photoBase = photoBase;
+        this.data = data;
     }
 
     return PhotoInputModel;
