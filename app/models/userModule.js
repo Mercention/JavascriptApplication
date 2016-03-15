@@ -26,7 +26,7 @@ app.userModule = (function () {
             }).done();
 
         return defer.promise;
-    }
+    };
 
     UserModule.prototype.login = function (username, password) {
         var requestUrl = this.serviceUrl + '/login',
@@ -48,7 +48,7 @@ app.userModule = (function () {
             }).done();
 
         return defer.promise;
-    }
+    };
 
     UserModule.prototype.logout = function () {
         var defer = Q.defer();
@@ -59,7 +59,7 @@ app.userModule = (function () {
 
         defer.resolve();
         return defer.promise;
-    }
+    };
 
     UserModule.prototype.getInfo = function () {
         var requestUrl = this.serviceUrl + '/_me';
@@ -70,7 +70,7 @@ app.userModule = (function () {
         }, function (error) {
             console.error(error);
         }).done();
-    }
+    };
 
     //return UserModule;
     return {

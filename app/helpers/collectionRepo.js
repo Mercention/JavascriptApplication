@@ -7,11 +7,11 @@ app.collectionRepo = (function () {
 
     CollectionRepo.prototype.getAll = function () {
         return app.requester.makeRequest('GET', this.serviceUrl, null, true);
-    }
+    };
 
     CollectionRepo.prototype.getById = function (id) {
         return app.requester.makeRequest('GET', this.serviceUrl + '/' + id, null, true);
-    }
+    };
 
     //CollectionRepo.prototype.getWithQuery = function (filters, sortBy, fields, limit, skip) {
     //    modifiers = modifiers ? '&' + modifiers : '';
@@ -27,7 +27,7 @@ app.collectionRepo = (function () {
         }
 
         return app.requester.makeRequest('POST', this.serviceUrl, entry, true);
-    }
+    };
 
     //CollectionRepo.prototype.addMany = function (entries) {
     //    for (var i in entries) {
@@ -42,15 +42,15 @@ app.collectionRepo = (function () {
 
         return app.requester.makeRequest('UPDATE', this.serviceUrl + '/' + id, entry, true);
         //return app.requester.makeRequest('UPDATE', this.serviceUrl + '/' + entry._id, entry, true);
-    }
+    };
 
     CollectionRepo.prototype.deleteWithQuery = function (id) {
         return app.requester.makeRequest('DELETE', this.serviceUrl + '/' + id, null, true);
-    }
+    };
 
     CollectionRepo.prototype.delete = function (parameters) {
         return app.requester.makeRequest('DELETE', this.serviceUrl + '/?query=' + parameters, null, true);
-    }
+    };
 
     //return CollectionRepo;
     return {

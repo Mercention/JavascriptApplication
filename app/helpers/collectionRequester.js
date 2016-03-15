@@ -7,11 +7,11 @@ app.collectionRequester = (function () {
 
     CollectionRequester.prototype.getAll = function () {
         return app.requester.makeRequest('GET', this.serviceUrl, null, true);
-    }
+    };
 
     CollectionRequester.prototype.getById = function (id) {
         return app.requester.makeRequest('GET', this.serviceUrl + '/' + id, null, true);
-    }
+    };
 
     //CollectionRequester.prototype.getWithQuery = function (filters, modifiers) {
     //    modifiers = '&' + modifiers || '';
