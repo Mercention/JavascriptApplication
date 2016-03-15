@@ -118,6 +118,10 @@ var app = app || {};
             albumController.addAlbum(data);
         });
 
+        this.bind('add-photo', function (e, data) {
+            photoController.addPhoto(data);
+        });
+
         this.bind('redirectUrl', function (e, data) {
             this.redirect(data.url);
         });

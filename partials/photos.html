@@ -1,9 +1,39 @@
-<ul>
+<ul style="display: flex; list-style: none">
     {{#photos}}
     <li data-id="{{_id}}">
-        <img src='data:image/{{type}};base64,{{data}}' />
+        <img src='data:{{type}};base64,{{data}}'/>
         <p>{{title}}</p>
 
     </li>
     {{/photos}}
+    <div>
+        <button class="btn btn-default" id="add-picture-btn" value="Add picture" data-toggle="modal"
+                data-target="#myModal">
+            Add Picture
+        </button>
+    </div>
 </ul>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add new photo</h4>
+            </div>
+            <div class="modal-body">
+                <img class="img-thumbnail picture-preview"/>
+                <p class="picture-name"></p>
+                <input type="file" id="picture"/>
+                <label for="pictureTitle">Title :</label>
+                <input type="text" id="pictureTitle">
+                <p>Size limit: 2048KB</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="upload-button" class="btn btn-md btn-info">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>

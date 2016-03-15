@@ -1,13 +1,13 @@
 var app = app || {};
 
-app.photoController = (function() {
+app.photoController = (function () {
     function PhotoController(model, viewBag) {
         this._model = model;
         this._viewBag = viewBag;
     }
 
-    PhotoController.prototype.getAllPhotos = function(selector) {
-        var _this =this;
+    PhotoController.prototype.getAllPhotos = function (selector) {
+        var _this = this;
 
         this._model.getAllPhotos()
             .then(function (photos) {
@@ -15,29 +15,31 @@ app.photoController = (function() {
                     photos: []
                 };
 
-                photos.forEach(function(photo){
-                    result.photos.push(new PhotoInputModel(photo._id, photo.title,photo.data));
+                photos.forEach(function (photo) {
+                    result.photos.push(new PhotoInputModel(photo._id, photo.title, photo.type, photo.data));
                 });
 
                 _this._viewBag.showPhotos(selector, result);
             }).done();
     };
 
-    PhotoController.prototype.addPhoto = function(data) {
+    PhotoController.prototype.addPhoto = function (data) {
         var _this = this;
 
         var photoOutputModel = {
-            title: data.title
+            title: data.title,
+            type: data.type,
+            data: data.data
         };
-
+        debugger
         this._model.addPhoto(photoOutputModel)
-            .then(function() {
+            .then(function () {
                 _this.getAllPhotos();
             })
     };
 
     return {
-        load: function(model, viewBag) {
+        load: function (model, viewBag) {
             return new PhotoController(model, viewBag);
         }
     };
