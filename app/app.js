@@ -9,14 +9,18 @@ var app = app || {};
 
     var userModule = app.userModule.load(),
         categoryModule = app.categoryModule.load(),
+        photoModule = app.photoModule.load(),
 
         homeViews = app.homeViews.load(),
         userViews = app.userViews.load(),
         categoryViews = app.categoryViews.load(),
+        photoViews = app.photoViews.load(),
 
         homeController = app.homeController.load(homeViews),
         userController = app.userController.load(userModule, userViews),
-        categoryController = app.categoryController.load(categoryModule,categoryViews);
+        categoryController = app.categoryController.load(categoryModule, categoryViews),
+        photoController = app.photoController.load(photoModule, photoViews);
+
 
     var selector = '.container';
 
@@ -82,9 +86,14 @@ var app = app || {};
         this.get('#/home/', function () {
             homeController.homeScreen(selector);
         });
-        this.get('#/category/',function(){
+        this.get('#/category/', function () {
             categoryController.getAllCategories(selector);
         });
+
+        this.get('#/category/photos', function () {
+            photoController.getAllPhotos(selector);
+        });
+
 
         this.bind('login', function (e, data) {
             userController.login(data.username, data.password);
@@ -93,7 +102,7 @@ var app = app || {};
         this.bind('register', function (e, data) {
             userController.register(data.username, data.password, data.email);
         });
-        this.bind('add-category',function(e, data){
+        this.bind('add-category', function (e, data) {
             categoryController.addCategory(data)
         });
 

@@ -1,8 +1,9 @@
 var app = app || {};
 
-app.categoryViews = (function(){
+app.photoViews = (function(){
     function showPhotos(selector, data) {
         app.templateLoader('partials/photos.html', function (template) {
+            debugger
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
             $('#addPhoto').on('click', function () {
