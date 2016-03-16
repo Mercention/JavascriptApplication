@@ -5,7 +5,12 @@ app.albumViews = (function () {
         app.templateLoader('partials/album.html', function (template) {
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
+
         }).then(function () {
+            $.sammy(function () {
+                this.trigger('show-photos' ,data.id )
+
+            });
             $('#add-picture-btn').on('click', function () {
                 var data = {
                     albumId: $('#album-id').val()

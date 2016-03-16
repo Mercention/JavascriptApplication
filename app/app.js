@@ -125,6 +125,10 @@ var app = app || {};
             albumController.getAllAlbums(selector,data.categoryId)
         });
 
+        this.bind('show-photos',function(e, data){
+            photoController.getAllPhotos(selector,data)
+        });
+
         this.bind('add-photo', function (e, data) {
             debugger
             photoController.addPhoto(data);
