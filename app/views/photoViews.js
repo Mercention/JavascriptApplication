@@ -13,7 +13,6 @@ app.photoViews = (function () {
                     $('div#picture-body').empty();
                 });
                 $("#deletePicture").on("click",function(){
-                    debugger
                     var id = $(_this).attr("data-id");
                     $.sammy(function () {
                         this.trigger('delete-photo',id);
@@ -28,7 +27,6 @@ app.photoViews = (function () {
                     $('#imagePreview').empty();
                 });
                 $('#picture').on('change', function () {
-                    debugger
                     var files = !!this.files ? this.files : [];
                     if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
 

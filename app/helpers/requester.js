@@ -12,9 +12,9 @@ app.requester = (function () {
     };
 
     Requester.prototype.delete = function (url, useSession) {
-        this.get(url,useSession).then(function(data){
-            return this.makeRequest('DELETE', url, data, useSession);
-        })
+        //this.get(url,useSession).then(function(data){
+            return this.makeRequest('DELETE', url, null, useSession);
+        //})
 
     };
 
@@ -25,6 +25,7 @@ app.requester = (function () {
     Requester.prototype.post = function (url, data, useSession) {
         return this.makeRequest('POST', url, data, useSession);
     };
+
     Requester.prototype.makeRequest = function (method, url, data, useSession) {
         var token,
             defer = Q.defer(),
@@ -32,10 +33,6 @@ app.requester = (function () {
             options = {
                 method: method,
                 url: url,
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                data: JSON.stringify(data),
                 success: function (data) {
                     defer.resolve(data);
                 },
@@ -44,16 +41,22 @@ app.requester = (function () {
                 }
             };
 
-        options.beforeSend = function (xhr) {
-            var token;
-            if (!useSession) {
-                token = _this.appId + ':' + _this.appSecret;
-                xhr.setRequestHeader('Authorization', 'Basic ' + btoa(token));
-            } else {
-                token = sessionStorage['sessionAuth'];
-                xhr.setRequestHeader('Authorization', 'Kinvey ' + token);
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!useSession) {
+                    token = _this.appId + ':' + _this.appSecret;
+                    xhr.setRequestHeader('Authorization', 'Basic ' + btoa(token));
+                } else {
+                    token = sessionStorage['sessionAuth'];
+                    xhr.setRequestHeader('Authorization', 'Kinvey ' + token);
+                }
+                if (data) {
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    settings.data = JSON.stringify(data);
+                    return true;
+                }
             }
-        };
+        });
 
         $.ajax(options);
 

@@ -17,7 +17,6 @@ app.photoController = (function () {
                 };
 
                 photos.forEach(function (photo) {
-                    debugger
                     result.photos.push(new PhotoInputModel(photo));
                 });
 
