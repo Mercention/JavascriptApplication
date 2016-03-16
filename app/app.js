@@ -127,7 +127,6 @@ var app = app || {};
         });
 
 
-
         this.bind('show-photos',function(e, data){
             photoController.getAllPhotos(photosSelector,data)
         });

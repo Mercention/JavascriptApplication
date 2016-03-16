@@ -46,18 +46,22 @@ app.photoController = (function () {
     PhotoController.prototype.addPhoto = function (data) {
         var _this = this;
 
-        //var photoOutputModel = {
-        //    title: data.title,
-        //    data: data.data
-        //};
         this._model.addPhoto(data)
             .then(function () {
-                _this.getAllPhotos();
+                $.sammy(function () {
+                    this.trigger('redirectUrl', {url:'#/album/' + data.album._id});
+                });
             })
     };
 
-    PhotoController.prototype.removePhoto = function (id) {
-        this._model.removePhoto(id);
+    PhotoController.prototype.removePhoto = function (data) {
+        debugger
+        this._model.removePhoto(data.photoId)
+            .then(function () {
+                $.sammy(function () {
+                    this.trigger('redirectUrl', {url:'#/album/' + data.albumId});
+                });
+            });
     };
 
     return {

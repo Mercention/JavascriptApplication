@@ -2,6 +2,7 @@ var app = app || {};
 
 app.photoViews = (function () {
     function showPhotos(selector, data) {
+        var albumId = data.albumId;
         app.templateLoader('partials/photos.html', function (template) {
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
@@ -15,7 +16,11 @@ app.photoViews = (function () {
                 $("#deletePicture").on("click",function(){
                     var id = $(_this).attr("data-id");
                     $.sammy(function () {
-                        this.trigger('delete-photo',id);
+                        var data = {
+                            photoId: id,
+                            albumId:albumId
+                        }
+                        this.trigger('delete-photo',data);
                     });
                 })
             });
