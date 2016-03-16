@@ -29,7 +29,6 @@ app.categoryController = (function() {
         var categoryOutputModel = {
             title: data.title
         };
-
         this._model.addCategory(categoryOutputModel)
             .then(function() {
                 _this.getAllCategories();

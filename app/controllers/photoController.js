@@ -23,6 +23,23 @@ app.photoController = (function () {
             }).done();
     };
 
+    PhotoController.prototype.getPhoto = function (selector, id) {
+        var _this = this;
+
+        this._model.getPhoto(id)
+            .then(function (photos) {
+                var result = {
+                    photos: []
+                };
+
+                photos.forEach(function (photo) {
+                    result.photos.push(new PhotoInputModel(photo._id, photo.title, photo.type, photo.data));
+                });
+
+                _this._viewBag.showPhoto(selector, result);
+            }).done();
+    };
+
     PhotoController.prototype.addPhoto = function (data) {
         var _this = this;
 
@@ -31,11 +48,14 @@ app.photoController = (function () {
             type: data.type,
             data: data.data
         };
-        debugger
         this._model.addPhoto(photoOutputModel)
             .then(function () {
                 _this.getAllPhotos();
             })
+    };
+
+    PhotoController.prototype.removePhoto = function (data) {
+
     };
 
     return {

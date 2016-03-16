@@ -6,11 +6,20 @@ app.requester = (function () {
         this.appSecret = appSecret;
         this.baseUrl = 'https://baas.kinvey.com/'
     }
-    Requester.prototype.get = function(url, useSession) {
+
+    Requester.prototype.get = function (url, useSession) {
         return this.makeRequest('GET', url, null, useSession);
     };
 
-    Requester.prototype.post = function(url, data, useSession) {
+    Requester.prototype.delete = function (url, useSession) {
+        return this.makeRequest('DELETE', url, null, useSession);
+    };
+
+    Requester.prototype.put = function (url, data, useSession) {
+        return this.makeRequest('PUT', url, data, useSession);
+    };
+
+    Requester.prototype.post = function (url, data, useSession) {
         return this.makeRequest('POST', url, data, useSession);
     };
     Requester.prototype.makeRequest = function (method, url, data, useSession) {
