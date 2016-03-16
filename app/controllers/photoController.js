@@ -16,7 +16,7 @@ app.photoController = (function () {
                 };
 
                 photos.forEach(function (photo) {
-                    result.photos.push(new PhotoInputModel(photo._id, photo.title, photo.type, photo.data));
+                    result.photos.push(new PhotoInputModel(photo._id, photo.title, photo.data));
                 });
 
                 _this._viewBag.showPhotos(selector, result);
@@ -33,7 +33,7 @@ app.photoController = (function () {
                 };
 
                 photos.forEach(function (photo) {
-                    result.photos.push(new PhotoInputModel(photo._id, photo.title, photo.type, photo.data));
+                    result.photos.push(new PhotoInputModel(photo._id, photo.title, photo.data));
                 });
 
                 _this._viewBag.showPhoto(selector, result);
@@ -45,7 +45,6 @@ app.photoController = (function () {
 
         var photoOutputModel = {
             title: data.title,
-            type: data.type,
             data: data.data
         };
         this._model.addPhoto(photoOutputModel)
