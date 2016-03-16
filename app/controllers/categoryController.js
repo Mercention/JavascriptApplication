@@ -29,10 +29,20 @@ app.categoryController = (function() {
         var categoryOutputModel = {
             title: data.title
         };
+
         this._model.addCategory(categoryOutputModel)
             .then(function() {
-                _this.getAllCategories();
+                $.sammy(function () {
+                    this.trigger('redirectUrl', {url:'#/category/'});
+                });
             })
+    };
+    CategoryController.prototype.getCategory = function(selector,categoryId){
+        var _this = this;
+        this._model.getCategory(categoryId)
+            .then(function(category){
+                _this._viewBag.showCategory(selector, category);
+            }).done();
     };
 
     return {
