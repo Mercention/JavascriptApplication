@@ -6,9 +6,9 @@ app.photoViews = (function () {
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
             $('img').on("click", function () {
-                $(this).clone().appendTo('div.modal-body');
+                $(this).clone().appendTo('div#picture-body');
                 $('button.dismiss').on('click', function () {
-                    $('div.modal-body').empty();
+                    $('div#picture-body').empty();
                 });
             });
             $('#add-picture-btn').on('click', function () {
