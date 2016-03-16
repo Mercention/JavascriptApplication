@@ -1,7 +1,7 @@
 <ul style="display: flex; list-style: none">
     {{#photos}}
     <li>
-        <img data-id="{{_id}}" src='data:{{type}};base64,{{data}}' data-toggle="modal" data-target="#pictureView"
+        <img data-id="{{_id}}" src='{{data}}' data-toggle="modal" data-target="#pictureView"
              class="img-responsive"/>
         <p>{{title}}</p>
 
@@ -20,11 +20,11 @@
 
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close clear-on-close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Add new photo</h4>
             </div>
             <div class="modal-body">
-                <img class="img-thumbnail picture-preview"/>
+                <div id="imagePreview"></div>
                 <p class="picture-name"></p>
                 <input type="file" id="picture"/>
                 <p>Size limit: 2048KB</p>
@@ -32,7 +32,7 @@
                 <input type="text" id="pictureTitle">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default clear-on-close" data-dismiss="modal">Close</button>
                 <button type="button" id="upload-button" class="btn btn-md btn-info">Upload</button>
             </div>
         </div>
@@ -47,12 +47,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close dismiss" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{{title}}</h4>
+                <!--<h4 class="modal-title">{{title}}</h4>-->
             </div>
             <div class="modal-body" id="picture-body">
-                <div id="#imageView">
-
-                </div>
+                <div id="#imageView"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default dismiss" data-dismiss="modal">Close</button>

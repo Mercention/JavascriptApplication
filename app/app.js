@@ -22,7 +22,7 @@ var app = app || {};
         userController = app.userController.load(userModule, userViews),
         categoryController = app.categoryController.load(categoryModule, categoryViews),
         albumController = app.albumController.load(albumModule, albumViews),
-        photoController = app.photoController.load(photoModule,photoViews);
+        photoController = app.photoController.load(photoModule, photoViews);
 
     var selector = '.container';
 
@@ -119,7 +119,6 @@ var app = app || {};
         });
 
         this.bind('add-photo', function (e, data) {
-            debugger
             photoController.addPhoto(data);
         });
 
