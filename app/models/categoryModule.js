@@ -15,6 +15,9 @@ app.categoryModule = (function(){
     CategoryModule.prototype.getAllCategories = function(){
         return app.requester.get(this.serviceUrl,true)
     };
+    CategoryModule.prototype.getCategory = function(categoryId){
+        return app.requester.get(this.serviceUrl + "/"+categoryId,true)
+    };
 
     return {
         load: function () {

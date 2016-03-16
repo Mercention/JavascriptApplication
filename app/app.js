@@ -97,6 +97,11 @@ var app = app || {};
             albumController.loadAddAlbumPage(selector);
         });
 
+        this.get('#/category/:id', function () {
+            var categoryId = this.params['id'];
+            categoryController.getCategory(selector, categoryId);
+        });
+
         this.get('#/album/:id', function () {
             var albumId = this.params['id'];
             albumController.getAlbum(selector, albumId);
@@ -109,13 +114,15 @@ var app = app || {};
         this.bind('register', function (e, data) {
             userController.register(data.username, data.password, data.email);
         });
-
         this.bind('add-category', function (e, data) {
             categoryController.addCategory(data);
         });
 
         this.bind('add-album', function (e, data) {
             albumController.addAlbum(data);
+        });
+        this.bind('show-albums',function(e, data){
+            albumController.getAllAlbums(selector,data.categoryId)
         });
 
         this.bind('add-photo', function (e, data) {

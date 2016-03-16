@@ -1,14 +1,32 @@
 var app = app || {};
 
 app.albumViews = (function () {
-    function showAlbums(selector, data) {
-    }
+    //function showAlbums(selector, data) {
+    //}
 
-    function showAlbum(selector, data) {
-        app.templateLoader('partials/album.html', function (template) {
+    function showAlbums(selector, data, categoryId) {
+        app.templateLoader('partials/albums.html', function (template) {
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
-        }).then(function () {
+            $('#addAlbum').on('click', function () {
+
+                $("#addNewAlbum").on("click",function(){
+
+                    var inputData = {
+                        title : $("#albumTitle").val(),
+                        category:{
+                            _id: categoryId,
+                            _type : "KinveyRef",
+                            collection:"Categories"
+                        }
+                    };
+                    $.sammy(function () {
+                        this.trigger('add-album',inputData )
+
+                    });
+                });
+            })
+        }).then(function (data) {
             $('#add-picture-btn').on('click', function () {
                 var data = {
                     albumId: $('#album-id').val()
@@ -24,6 +42,7 @@ app.albumViews = (function () {
                  this.trigger('show-album', {title: "Albums"});
                  });*/
             });
+
         }).done();
     }
 
@@ -53,7 +72,7 @@ app.albumViews = (function () {
     return {
         load: function () {
             return {
-                showAlbum: showAlbum,
+                showAlbums: showAlbums,
                 addAlbum: addAlbum
             };
         }

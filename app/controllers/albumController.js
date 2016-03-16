@@ -6,16 +6,24 @@ app.albumController = (function () {
         this._viewBag = viewBag;
     }
 
-    AlbumController.prototype.getAllAlbums = function () {
+    AlbumController.prototype.getAllAlbums = function (selector,categoryId) {
         var _this = this;
 
-        this._model.getAllAlbums()
+        this._model.getAllAlbums(categoryId)
             .then(function (albums) {
-                //albums = albums.map(function(e){
-                //    return new AlbumViewModel(e);
-                //});
+                var result = {
+                    albums: []
+                };
 
-                _this._viewBag.showAlbums(selector, albums);
+                //albums = albums.filter(function(item){
+                //     return item.category._id == categoryId;
+                // });
+
+                albums.forEach(function(album){
+                    result.albums.push(new AlbumInputModel(album._id, album.title));
+                });
+
+                _this._viewBag.showAlbums(selector, result , categoryId);
             }).done();
     };
 
@@ -40,7 +48,7 @@ app.albumController = (function () {
         this._model.addAlbum(data)
             .then(function (album) {
                 $.sammy(function () {
-                    this.trigger('redirectUrl', {url:'#/album/' + album._id});
+                    this.trigger('redirectUrl', {url:'#/category/' + album.category._id});
                 });
             }).done();
     };
