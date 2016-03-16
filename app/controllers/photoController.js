@@ -12,11 +12,13 @@ app.photoController = (function () {
         this._model.getAllPhotos(albumId)
             .then(function (photos) {
                 var result = {
-                    photos: []
+                    photos: [],
+                    albumId:albumId
                 };
 
                 photos.forEach(function (photo) {
-                    result.photos.push(new PhotoInputModel(photo._id, photo.title, photo.data));
+                    debugger
+                    result.photos.push(new PhotoInputModel(photo));
                 });
 
                 _this._viewBag.showPhotos(selector, result);
@@ -30,10 +32,12 @@ app.photoController = (function () {
             .then(function (photos) {
                 var result = {
                     photos: []
+
                 };
 
                 photos.forEach(function (photo) {
-                    result.photos.push(new PhotoInputModel(photo._id, photo.title, photo.data));
+
+                    result.photos.push(new PhotoInputModel(photo));
                 });
 
                 _this._viewBag.showPhoto(selector, result);
@@ -43,18 +47,18 @@ app.photoController = (function () {
     PhotoController.prototype.addPhoto = function (data) {
         var _this = this;
 
-        var photoOutputModel = {
-            title: data.title,
-            data: data.data
-        };
-        this._model.addPhoto(photoOutputModel)
+        //var photoOutputModel = {
+        //    title: data.title,
+        //    data: data.data
+        //};
+        this._model.addPhoto(data)
             .then(function () {
                 _this.getAllPhotos();
             })
     };
 
-    PhotoController.prototype.removePhoto = function (data) {
-
+    PhotoController.prototype.removePhoto = function (id) {
+        this._model.removePhoto(id);
     };
 
     return {

@@ -1,8 +1,9 @@
 var app = app || {};
 
 app.homeController = (function () {
-    function HomeController(views) {
+    function HomeController(views,model) {
         this.viewBag = views;
+        this._model = model;
     }
 
     HomeController.prototype.welcomeScreen = function (selector) {
@@ -10,16 +11,33 @@ app.homeController = (function () {
     };
 
     HomeController.prototype.homeScreen = function (selector) {
-        var data = {
-            username: sessionStorage['username']
-        };
+        var _this = this;
+        this._model.getHomePageAlbums()
+            .then(function(albums){
 
-        this.viewBag.homeView.loadHomeView(selector, data);
+                var result = {
+                    albums: [],
+                    username: sessionStorage['username']
+                };
+
+                albums.forEach(function(album){
+                    result.albums.push(new AlbumInputModel(album._id, album.title));
+                });
+
+
+                _this.viewBag.homeView.loadHomeView(selector, result);
+            }).done();
+
+
     };
 
+    HomeController.prototype.getHomePageAlbums = function(selector){
+
+    }
+
     return {
-        load: function (views) {
-            return new HomeController(views);
+        load: function (views,model) {
+            return new HomeController(views,model);
         }
     }
 })();

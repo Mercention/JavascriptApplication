@@ -1,19 +1,19 @@
-<ul style="display: flex; list-style: none">
+<ul>
     {{#photos}}
     <li>
-        <img data-id="{{_id}}" src='{{data}}' data-toggle="modal" data-target="#pictureView"
-             class="img-responsive"/>
+        <img  src='{{data}}' data-toggle="modal" data-id="{{_id}}" data-target="#pictureView"
+             class="img-responsive" style="max-height: 300px; padding: 5px;" />
         <p>{{title}}</p>
 
     </li>
     {{/photos}}
-    <div>
-        <button class="btn btn-default" id="add-picture-btn" value="Add picture" data-toggle="modal"
-                data-target="#myModal">
-            Add Picture
-        </button>
-    </div>
+
 </ul>
+
+    <button class="btn btn-info" id="add-picture-btn" value="Add picture" data-toggle="modal"
+            data-target="#myModal">
+        Add Picture
+    </button>
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -33,7 +33,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default clear-on-close" data-dismiss="modal">Close</button>
-                <button type="button" id="upload-button" class="btn btn-md btn-info">Upload</button>
+                <button type="button" id="upload-button"  data-dismiss="modal" class="btn btn-md btn-info">Upload</button>
             </div>
         </div>
     </div>
@@ -54,6 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default dismiss" data-dismiss="modal">Close</button>
+                <button type="button" id="deletePicture" class="btn btn-danger dismiss" data-dismiss="modal">Delete</button>
                 <button type="button" id="like" class="btn btn-md btn-info">Like!</button>
             </div>
         </div>

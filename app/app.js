@@ -18,7 +18,7 @@ var app = app || {};
         albumViews = app.albumViews.load(),
         photoViews = app.photoViews.load(),
 
-        homeController = app.homeController.load(homeViews),
+        homeController = app.homeController.load(homeViews,albumModule),
         userController = app.userController.load(userModule, userViews),
         categoryController = app.categoryController.load(categoryModule, categoryViews),
         albumController = app.albumController.load(albumModule, albumViews),
@@ -126,13 +126,17 @@ var app = app || {};
             albumController.getAllAlbums(selector,data.categoryId)
         });
 
+
+
         this.bind('show-photos',function(e, data){
             photoController.getAllPhotos(photosSelector,data)
         });
 
         this.bind('add-photo', function (e, data) {
-            debugger
             photoController.addPhoto(data);
+        });
+        this.bind('delete-photo', function (e, data) {
+            photoController.removePhoto(data);
         });
 
         this.bind('redirectUrl', function (e, data) {

@@ -15,10 +15,9 @@ app.homeViews = (function () {
         app.templateLoader('partials/welcome.html', function (template) {
             var outHtml = Mustache.render(template);
 
-            $(selector).html(outHtml);
+            $(selector).html(outHtml)
         });
     }
-
     function loadHomeView(selector, data) {
         app.templateLoader('partials/home.html', function (template) {
             var outHtml = Mustache.render(template, data);

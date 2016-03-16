@@ -12,7 +12,10 @@ app.requester = (function () {
     };
 
     Requester.prototype.delete = function (url, useSession) {
-        return this.makeRequest('DELETE', url, null, useSession);
+        this.get(url,useSession).then(function(data){
+            return this.makeRequest('DELETE', url, data, useSession);
+        })
+
     };
 
     Requester.prototype.put = function (url, data, useSession) {

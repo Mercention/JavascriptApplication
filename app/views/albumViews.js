@@ -8,13 +8,13 @@ app.albumViews = (function () {
 
         }).then(function () {
             $.sammy(function () {
-                this.trigger('show-photos' ,data.id )
+                this.trigger('show-photos' ,data._id )
 
             });
             $('#add-picture-btn').on('click', function () {
                 var data = {
                     albumId: $('#album-id').val()
-                }
+                };
 
                 /*$.sammy(function () {
                  this.trigger('add-picture', data);
@@ -28,6 +28,7 @@ app.albumViews = (function () {
             });
         }).done();
     }
+
 
     function showAlbums(selector, data, categoryId) {
         app.templateLoader('partials/albums.html', function (template) {
@@ -51,24 +52,7 @@ app.albumViews = (function () {
                     });
                 });
             })
-        }).then(function (data) {
-            $('#add-picture-btn').on('click', function () {
-                var data = {
-                    albumId: $('#album-id').val()
-                };
-
-                /*$.sammy(function () {
-                 this.trigger('add-picture', data);
-                 });*/
-            });
-
-            $('#back-btn').on('click', function () {
-                /*$.sammy(function () {
-                 this.trigger('show-album', {title: "Albums"});
-                 });*/
-            });
-
-        }).done();
+        })
     }
 
     function addAlbum(selector) {

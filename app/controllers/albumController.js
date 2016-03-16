@@ -15,10 +15,6 @@ app.albumController = (function () {
                     albums: []
                 };
 
-                //albums = albums.filter(function(item){
-                //     return item.category._id == categoryId;
-                // });
-
                 albums.forEach(function(album){
                     result.albums.push(new AlbumInputModel(album._id, album.title));
                 });
@@ -32,11 +28,12 @@ app.albumController = (function () {
 
         this._model.getAlbum(albumId)
             .then(function (album) {
-                //album = new AlbumViewModel(album);
 
                 _this._viewBag.showAlbum(selector, album);
             }).done();
     };
+
+
 
     AlbumController.prototype.loadAddAlbumPage = function(selector){
         this._viewBag.addAlbum(selector);

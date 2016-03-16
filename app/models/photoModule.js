@@ -9,16 +9,15 @@ app.photoModule = (function () {
         return app.requester.post(this.serviceUrl, data, true)
     };
 
-    PhotoModule.prototype.removePhoto = function (data) {
-        var photoUrl = this.serviceUrl + '?query={"_id":"' + id + '"}';
+    PhotoModule.prototype.removePhoto = function (id) {
+        var photoUrl = this.serviceUrl + '/'+id;
         return app.requester.delete(photoUrl, true)
     };
 
     PhotoModule.prototype.getAllPhotos = function (albumId) {
         var allPhotosUrl = this.serviceUrl
-            + '/?query={"album":{"_type":"KinveyRef","_id":"'
-            + albumId
-            + '","_collection":"Albums"}}&limit=8&skip=0'; // TODO made me dynamic and add paging to page
+                + '/?query={"album._id":"'+albumId+'"}';
+
         return app.requester.get(allPhotosUrl, true)
     };
 

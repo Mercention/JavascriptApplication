@@ -1,10 +1,11 @@
-<h1>albums</h1>
+<h1>Albums</h1>
+<ul>
 {{#albums}}
 <li>
-    <a href="#/album/{{_id}}">{{title}}</a>
+    <a href="#/album/{{_id}}" class="btn btn-warning">{{title}}</a>
 </li>
 {{/albums}}
-
+</ul>
 <button class="btn btn-default" id="addAlbum" value="Add Category" data-toggle="modal" data-target="#myModal">Add Album</button>
 
 <div class="modal fade" id="myModal" role="dialog">

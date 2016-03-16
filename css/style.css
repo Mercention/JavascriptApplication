@@ -5,3 +5,15 @@ table {
 td {
    border-top: 2px solid black;
 }
+
+.btn-warning{
+    padding: 5px;
+    margin-left: 10px;
+}
+ul{
+    display: flex; list-style: none
+}
+#addCategory,#add-picture-btn,#addAlbum{
+
+    margin-top: 10%;
+}

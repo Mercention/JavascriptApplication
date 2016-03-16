@@ -20,6 +20,10 @@ app.albumModule = (function () {
     AlbumModule.prototype.getAlbum = function (albumId) {
         return app.requester.get(this.serviceUrl + '/' + albumId, true);
     };
+    AlbumModule.prototype.getHomePageAlbums = function(){
+
+        return app.requester.get(this.serviceUrl+"/?query={}&limit=5",true);
+    }
 
     return {
         load: function () {

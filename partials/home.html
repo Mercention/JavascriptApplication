@@ -1,3 +1,8 @@
 <div class="dialog-box" id="homePage">
     <h1>Welcome, {{username}}</h1>
+    <div id="albumContent">
+        {{#albums}}
+        <a href="#/album/{{_id}}" class="btn btn-warning">{{title}}</a>
+        {{/albums}}
+    </div>
 </div>
