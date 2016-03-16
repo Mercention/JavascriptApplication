@@ -6,10 +6,12 @@ app.photoViews = (function () {
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
             $('img').on("click", function () {
-                $(this).clone().appendTo('div#picture-body');
-                $('button.dismiss').on('click', function () {
-                    $('div#picture-body').empty();
-                });
+                //$(this).clone().appendTo('div#picture-body');
+                //$('button.dismiss').on('click', function () {
+                //    $('div#picture-body').empty();
+                //});
+                var current = $(this).clone();
+                $("#picture-body").html(current)
             });
             $('#add-picture-btn').on('click', function () {
                 //$('#picture').on('change',function(){
