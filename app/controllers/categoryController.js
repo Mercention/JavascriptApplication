@@ -7,7 +7,7 @@ app.categoryController = (function() {
     }
 
     CategoryController.prototype.getAllCategories = function(selector) {
-        var _this = this;
+        var _this =this;
 
         this._model.getAllCategories()
             .then(function (categories) {
@@ -15,9 +15,9 @@ app.categoryController = (function() {
                     categories: []
                 };
 
-               categories.forEach(function(category){
-                   result.categories.push(new CategoryInputModel(category._id, category.title));
-               });
+                categories.forEach(function(category){
+                    result.categories.push(new CategoryInputModel(category._id, category.title));
+                });
 
                 _this._viewBag.showCategories(selector, result);
             }).done();
