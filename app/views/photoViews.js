@@ -5,6 +5,12 @@ app.photoViews = (function () {
         app.templateLoader('partials/photos.html', function (template) {
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
+            $('img').on("click", function () {
+                $(this).clone().appendTo('div.modal-body');
+                $('button.dismiss').on('click', function () {
+                    $('div.modal-body').empty();
+                });
+            });
             $('#add-picture-btn').on('click', function () {
                 //$('#picture').on('change',function(){
                 //    var files = !!this.files ? this.files : [];
@@ -18,7 +24,7 @@ app.photoViews = (function () {
                 //            $("#imagePreview").css("background-image", "url("+this.result+")");
                 //        }
                 //    }
-                //});
+                //});//TODO fix this
                 $('#upload-button').on('click', function () {
                     if ($('#picture').val() != undefined) {
                         var title = $('#pictureTitle').val();
@@ -30,15 +36,19 @@ app.photoViews = (function () {
                         })
                     }
                 });
-
             })
         })
+    }
+
+    function showPhoto(selector, data) {
+        app.templateLoader('partials/')
     }
 
     return {
         load: function () {
             return {
-                showPhotos: showPhotos
+                showPhotos: showPhotos,
+                showPhoto: showPhoto
             }
         }
     }
