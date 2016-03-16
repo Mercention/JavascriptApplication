@@ -3,17 +3,9 @@
 
     <h3>{{title}}</h3><br>
 
-    <button id="add-picture-btn" class="btn btn-default">Add picture</button>
-    <button id="back-btn" class="btn btn-default">Back</button>
+    <!--<button id="add-picture-btn" class="btn btn-default">Add picture</button>
+    <button id="back-btn" class="btn btn-default">Back</button>-->
 
-    <div class="container-fluid bg-3 text-center">
-        {{#pictures}}
-        <div class="row">
-            <div class="col-sm-3">
-                <p>{{.title}}</p>
-                <img src="{{.data}}" class="img-responsive" style="width:100%" alt="Image">
-            </div>
-        </div>
-        {{/pictures}}
+    <div class="container-fluid bg-3 text-center" id="photos">
     </div>
 </div>

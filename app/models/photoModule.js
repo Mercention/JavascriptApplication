@@ -1,7 +1,6 @@
 var app = app || {};
 
 app.photoModule = (function () {
-    var albumId = '56e912ac1b6974a8020340bc'; //TODO Remove after add injection
     function PhotoModule() {
         this.serviceUrl = app.requester.baseUrl + 'appdata/' + app.requester.appId + '/Photos';
     }
@@ -15,7 +14,7 @@ app.photoModule = (function () {
         return app.requester.delete(photoUrl, true)
     };
 
-    PhotoModule.prototype.getAllPhotos = function (id) {
+    PhotoModule.prototype.getAllPhotos = function (albumId) {
         var allPhotosUrl = this.serviceUrl
             + '/?query={"album":{"_type":"KinveyRef","_id":"'
             + albumId
@@ -24,7 +23,7 @@ app.photoModule = (function () {
     };
 
     PhotoModule.prototype.getPhoto = function (id) {
-        var photoUrl = this.serviceUrl + '?query={"_id":"' + id + '"}';
+        var photoUrl = this.serviceUrl + '/' + id;
         return app.requester.post(photoUrl, true);
     };
 

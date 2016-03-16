@@ -6,10 +6,10 @@ app.photoController = (function () {
         this._viewBag = viewBag;
     }
 
-    PhotoController.prototype.getAllPhotos = function (selector) {
+    PhotoController.prototype.getAllPhotos = function (selector, albumId) {
         var _this = this;
 
-        this._model.getAllPhotos()
+        this._model.getAllPhotos(albumId)
             .then(function (photos) {
                 var result = {
                     photos: []

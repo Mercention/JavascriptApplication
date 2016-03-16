@@ -24,7 +24,8 @@ var app = app || {};
         albumController = app.albumController.load(albumModule, albumViews),
         photoController = app.photoController.load(photoModule,photoViews);
 
-    var selector = '.container';
+    var selector = '.container',
+        photosSelector = '#photos';
 
     app.router = $.sammy(function () {
         //this.use('Mustache');
@@ -126,7 +127,7 @@ var app = app || {};
         });
 
         this.bind('show-photos',function(e, data){
-            photoController.getAllPhotos(selector,data)
+            photoController.getAllPhotos(photosSelector,data)
         });
 
         this.bind('add-photo', function (e, data) {
