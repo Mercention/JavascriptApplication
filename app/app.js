@@ -119,6 +119,7 @@ var app = app || {};
         });
 
         this.bind('add-photo', function (e, data) {
+            debugger
             photoController.addPhoto(data);
         });
 

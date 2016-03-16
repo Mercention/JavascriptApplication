@@ -31,7 +31,6 @@ app.photoController = (function () {
             type: data.type,
             data: data.data
         };
-        debugger
         this._model.addPhoto(photoOutputModel)
             .then(function () {
                 _this.getAllPhotos();
