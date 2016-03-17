@@ -11,21 +11,26 @@ var app = app || {};
         categoryModule = app.categoryModule.load(),
         albumModule = app.albumModule.load(),
         photoModule = app.photoModule.load(),
+        commentModule = app.commentModule.load(),
 
         homeViews = app.homeViews.load(),
         userViews = app.userViews.load(),
         categoryViews = app.categoryViews.load(),
         albumViews = app.albumViews.load(),
         photoViews = app.photoViews.load(),
+        commentViews = app.commentViews.load(),
 
         homeController = app.homeController.load(homeViews,albumModule),
         userController = app.userController.load(userModule, userViews),
         categoryController = app.categoryController.load(categoryModule, categoryViews),
         albumController = app.albumController.load(albumModule, albumViews),
-        photoController = app.photoController.load(photoModule,photoViews);
+        photoController = app.photoController.load(photoModule,photoViews),
+        commentController = app.commentController.load(commentModule, commentViews);
 
     var selector = '.container',
-        photosSelector = '#photos';
+        photosSelector = '#photos',
+        photoCommentsSelector = '#photo-comments',
+        albumCommentsSelector = '#album-comments';
 
     app.router = $.sammy(function () {
         //this.use('Mustache');
@@ -136,6 +141,22 @@ var app = app || {};
         });
         this.bind('delete-photo', function (e, data) {
             photoController.removePhoto(data);
+        });
+
+        this.bind('show-photo-comments', function(e, photoId) {
+            commentController.getAllPhotoComments(photoCommentsSelector, photoId);
+        });
+
+        this.bind('show-album-comments', function(e, albumId) {
+            commentController.getAllAlbumComments(albumCommentsSelector, albumId);
+        });
+
+        this.bind('add-photo-comment', function(e, data) {
+           commentController.addPhotoComment(data);
+        });
+
+        this.bind('add-album-comment', function(e, data) {
+            commentController.addAlbumComment(data);
         });
 
         this.bind('redirectUrl', function (e, data) {

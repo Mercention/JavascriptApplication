@@ -6,6 +6,46 @@ app.commentController = (function(){
         this._viewBag = viewBag;
     }
 
+    CommentController.prototype.addPhotoComment = function(data) {
+        //var _this = this;
+
+        this._model.addComment(data, 'Photos')
+            .then(function (d) {
+                $.sammy(function () {
+                    this.trigger('show-photo-comments', d.photo._id);
+                });
+            });
+    }
+
+    CommentController.prototype.addAlbumComment = function(data) {
+        //var _this = this;
+
+        this._model.addComment(data, 'Albums')
+            .then(function (d) {
+                $.sammy(function () {
+                    this.trigger('show-album-comments', d.album._id);
+                });
+            });
+    }
+
+    CommentController.prototype.getAllPhotoComments = function(selector, photoId) {
+        var _this = this;
+
+        this._model.getComments(photoId, 'Photos')
+            .then(function (comments) {
+                _this._viewBag.showPhotoComments(selector, comments, photoId);
+            }).done();
+    }
+
+    CommentController.prototype.getAllAlbumComments = function(selector, albumId) {
+        var _this = this;
+
+        this._model.getComments(albumId, 'Albums')
+            .then(function (comments) {
+                _this._viewBag.showAlbumComments(selector, comments, albumId);
+            }).done();
+    }
+
     return {
         load: function(model, viewBag){
             return new CommentController(model, viewBag);
