@@ -26,7 +26,7 @@ app.categoryViews = (function(){
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
             $.sammy(function () {
-                this.trigger('show-albums', {categoryId: data._id})
+                this.trigger('show-myAlbums', {categoryId: data._id})
             });
 
         })

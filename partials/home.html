@@ -1,8 +1,15 @@
 <div class="dialog-box" id="homePage">
     <h1>Welcome, {{username}}</h1>
-    <div id="albumContent">
-        {{#albums}}
+    <h2>My albums</h2>
+    <div id="myAlbums">
+        {{#myAlbums}}
         <a href="#/album/{{_id}}" class="btn btn-warning">{{title}}</a>
-        {{/albums}}
+        {{/myAlbums}}
+    </div>
+    <h2>Last albums</h2>
+    <div id="albumContent">
+        {{#lastAlbums}}
+        <a href="#/album/{{_id}}" class="btn btn-warning">{{title}}</a>
+        {{/lastAlbums}}
     </div>
 </div>

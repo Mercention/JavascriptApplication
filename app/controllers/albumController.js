@@ -16,7 +16,7 @@ app.albumController = (function () {
                 };
 
                 albums.forEach(function(album){
-                    result.albums.push(new AlbumInputModel(album._id, album.title));
+                    result.myAlbums.push(new AlbumInputModel(album._id, album.title));
                 });
 
                 _this._viewBag.showAlbums(selector, result , categoryId);

@@ -31,7 +31,7 @@ app.albumViews = (function () {
 
 
     function showAlbums(selector, data, categoryId) {
-        app.templateLoader('partials/albums.html', function (template) {
+        app.templateLoader('partials/myAlbums.html', function (template) {
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
             $('#addAlbum').on('click', function () {

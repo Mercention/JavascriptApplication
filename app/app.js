@@ -127,7 +127,7 @@ var app = app || {};
         this.bind('add-album', function (e, data) {
             albumController.addAlbum(data);
         });
-        this.bind('show-albums',function(e, data){
+        this.bind('show-myAlbums',function(e, data){
             albumController.getAllAlbums(selector,data.categoryId)
         });
 

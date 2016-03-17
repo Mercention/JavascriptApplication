@@ -13,17 +13,20 @@ app.albumModule = (function () {
     };
 
     AlbumModule.prototype.getAllAlbums = function (categoryId) {
-        var query = '?query={"category._id":"'+categoryId +'"}';
+        var query = '?query={"category._id":"' + categoryId + '"}';
         return app.requester.get(this.serviceUrl + query, true);
     };
 
     AlbumModule.prototype.getAlbum = function (albumId) {
         return app.requester.get(this.serviceUrl + '/' + albumId, true);
     };
-    AlbumModule.prototype.getHomePageAlbums = function(){
+    AlbumModule.prototype.getMyAlbums = function (id) {
+        return app.requester.get(this.serviceUrl + '/?query={"_acl.creator":"' + id + '"}', true);
+    };
 
-        return app.requester.get(this.serviceUrl+"/?query={}&limit=5",true);
-    }
+    AlbumModule.prototype.getLastAlbums = function () {
+        return app.requester.get(this.serviceUrl + '/?query={}&sort={"_kmd.ect":-1}&limit=5', true);
+    };
 
     return {
         load: function () {
