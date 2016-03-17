@@ -24,7 +24,6 @@ app.homeController = (function () {
                     result.myAlbums.push(new AlbumInputModel(album._id, album.title));
                 });
 
-
                 _this.viewBag.homeView.loadHomeView(selector, result);
             }).done();
 

@@ -33,7 +33,15 @@ app.commentController = (function(){
 
         this._model.getComments(photoId, 'Photos')
             .then(function (comments) {
-                _this._viewBag.showPhotoComments(selector, comments, photoId);
+                var result = {
+                    comments: []
+                };
+
+                comments.forEach(function(comment){
+                    result.comments.push(comment);
+                });
+
+                _this._viewBag.showPhotoComments(selector, result, photoId);
             }).done();
     }
 
@@ -42,7 +50,15 @@ app.commentController = (function(){
 
         this._model.getComments(albumId, 'Albums')
             .then(function (comments) {
-                _this._viewBag.showAlbumComments(selector, comments, albumId);
+                var result = {
+                    comments: []
+                };
+
+                comments.forEach(function(comment){
+                    result.comments.push(comment);
+                });
+
+                _this._viewBag.showAlbumComments(selector, result, albumId);
             }).done();
     }
 

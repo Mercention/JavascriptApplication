@@ -6,9 +6,10 @@ app.commentViews = (function(){
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
 
-            $('#album-comments').on('click', '#add-comment-btn', function () {
+            $('#photo-comments').on('click', '#add-comment-btn', function () {
                 var inputData = {
                     text: $("#comment-text").val(),
+                    author: sessionStorage['username'],
                     madeBy: {
                         "_type": "KinveyRef",
                         "_id": sessionStorage['userId'],
@@ -22,20 +23,24 @@ app.commentViews = (function(){
                 };
 
                 $.sammy(function () {
-                    this.trigger('add-photo-comment', data);
+                    this.trigger('add-photo-comment', inputData);
                 });
             });
         });
     }
 
     function showAlbumComments(selector, data, albumId) {
+
         app.templateLoader('partials/comments.html', function (template) {
+            debugger
             var rendered = Mustache.render(template, data);
             $(selector).html(rendered);
 
             $('#album-comments').on('click', '#add-comment-btn', function () {
+
                 var inputData = {
                     text: $("#comment-text").val(),
+                    author:sessionStorage['username'],
                     madeBy: {
                         "_type": "KinveyRef",
                         "_id": sessionStorage['userId'],
@@ -49,7 +54,7 @@ app.commentViews = (function(){
                 };
 
                 $.sammy(function () {
-                    this.trigger('add-album-comment', data);
+                    this.trigger('add-album-comment', inputData);
                 });
             });
         });

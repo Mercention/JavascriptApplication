@@ -29,6 +29,7 @@ app.photoViews = (function () {
                 });
 
                 $.sammy(function () {
+
                     this.trigger('show-photo-comments', id);
                 });
             });

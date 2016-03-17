@@ -7,10 +7,10 @@ app.commentModule = (function() {
 
     CommentModule.prototype.getComments = function(pId, collectionName) {
         var allComentsUrl = this.serviceUrl + '/?query=';
-        if (collectionName === 'ALbums') {
+        if (collectionName === 'Albums') {
             allComentsUrl += JSON.stringify({"album._id":pId});
         } else {
-            allComentsUrl += JSON.stringify({"picture._id":pId});
+            allComentsUrl += JSON.stringify({"photo._id":pId});
         }
 
         allComentsUrl += '&resolve=madeBy';//'&resolve_depth=1';
